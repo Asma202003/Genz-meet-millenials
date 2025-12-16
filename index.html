@@ -641,9 +641,9 @@
         }
 
         .option-btn.correct {
-            background: rgba(6, 255, 165, 0.2);
-            border-color: #06ffa5;
-            color: #06ffa5;
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
+            color: #10b981;
             animation: correctPulse 0.6s;
         }
 
@@ -739,6 +739,168 @@
             animation: bounce 0.8s ease infinite;
         }
 
+        /* Dart Target Animation */
+        .dart-target-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            display: none;
+        }
+
+        .dart-target-container.active {
+            display: block;
+        }
+
+        .target-board {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            animation: targetAppear 0.5s ease-out;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes targetAppear {
+            from { transform: scale(0) rotate(0deg); opacity: 0; }
+            to { transform: scale(1) rotate(360deg); opacity: 1; }
+        }
+
+        .target-ring {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .target-ring.ring-1 {
+            width: 100%;
+            height: 100%;
+            background: #ef4444;
+        }
+
+        .target-ring.ring-2 {
+            width: 75%;
+            height: 75%;
+            background: white;
+        }
+
+        .target-ring.ring-3 {
+            width: 50%;
+            height: 50%;
+            background: #3b82f6;
+        }
+
+        .target-ring.ring-4 {
+            width: 25%;
+            height: 25%;
+            background: #fbbf24;
+        }
+
+        .target-ring.bullseye {
+            width: 15%;
+            height: 15%;
+            background: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+        }
+
+        .dart {
+            position: absolute;
+            width: 80px;
+            height: 8px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: dartFly 1s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes dartFly {
+            0% {
+                transform: translate(-300px, -150px) rotate(-45deg) scale(0.5);
+                opacity: 0;
+            }
+            60% {
+                transform: translate(-40px, -40px) rotate(-20deg) scale(1);
+                opacity: 1;
+            }
+            80% {
+                transform: translate(-50%, -50%) rotate(0deg) scale(1.1);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(0deg) scale(1);
+            }
+        }
+
+        .dart-body {
+            position: absolute;
+            width: 50px;
+            height: 8px;
+            background: linear-gradient(90deg, #9ca3af 0%, #6b7280 50%, #4b5563 100%);
+            border-radius: 0 4px 4px 0;
+            left: 0;
+            top: 0;
+        }
+
+        .dart-point {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-right: 15px solid #1f2937;
+            left: -15px;
+            top: 0;
+        }
+
+        .dart-flight {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 20px solid #ef4444;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            right: -20px;
+            top: -4px;
+        }
+
+        .dart-flight-2 {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 20px solid #3b82f6;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            right: -20px;
+            top: -4px;
+            transform: scaleY(0.6);
+        }
+
+        .impact-effect {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.8) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: impactPulse 0.6s ease-out 1s;
+            opacity: 0;
+        }
+
+        @keyframes impactPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0;
+            }
+        }
+
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
@@ -753,7 +915,7 @@
         }
 
         .feedback-title.correct {
-            color: #06ffa5;
+            color: #10b981;
         }
 
         .feedback-title.wrong {
@@ -1055,6 +1217,22 @@
     <!-- Feedback Modal -->
     <div class="feedback-modal" id="feedbackModal">
         <div class="feedback-content">
+            <div class="dart-target-container" id="dartTarget">
+                <div class="target-board">
+                    <div class="target-ring ring-1"></div>
+                    <div class="target-ring ring-2"></div>
+                    <div class="target-ring ring-3"></div>
+                    <div class="target-ring ring-4"></div>
+                    <div class="target-ring bullseye"></div>
+                    <div class="dart">
+                        <div class="dart-point"></div>
+                        <div class="dart-body"></div>
+                        <div class="dart-flight"></div>
+                        <div class="dart-flight-2"></div>
+                    </div>
+                    <div class="impact-effect"></div>
+                </div>
+            </div>
             <div class="feedback-icon" id="feedbackIcon"></div>
             <div class="feedback-title" id="feedbackTitle"></div>
             <div class="feedback-message" id="feedbackMessage"></div>
@@ -1252,19 +1430,30 @@
 
             const modal = document.getElementById('feedbackModal');
             const icon = document.getElementById('feedbackIcon');
+            const dartTarget = document.getElementById('dartTarget');
             const title = document.getElementById('feedbackTitle');
             const message = document.getElementById('feedbackMessage');
             const detail = document.getElementById('feedbackDetail');
 
             if (isCorrect) {
-                icon.textContent = '🎉';
-                title.textContent = 'AMAZING! WELL DONE!';
+                // Reset and show dart target animation
+                dartTarget.classList.remove('active');
+                // Force reflow to restart animation
+                void dartTarget.offsetWidth;
+                dartTarget.classList.add('active');
+                icon.style.display = 'none';
+                
+                title.textContent = 'BULLSEYE! PERFECT HIT!';
                 title.className = 'feedback-title correct';
-                message.textContent = 'Absolutely correct! Keep rocking! 🚀';
+                message.textContent = 'Absolutely correct! You nailed it! 🎯';
                 detail.textContent = gameState.currentQuestion.explanation;
                 createConfetti();
             } else {
+                // Show emoji for wrong answers
+                dartTarget.classList.remove('active');
+                icon.style.display = 'block';
                 icon.textContent = '💡';
+                
                 title.textContent = "IT'S OKAY BUDDY!";
                 title.className = 'feedback-title wrong';
                 message.textContent = 'You learnt something new today! 🌟';
@@ -1276,7 +1465,7 @@
 
         // Create Confetti
         function createConfetti() {
-            const colors = ['#06ffa5', '#3a86ff', '#ec4899', '#f59e0b', '#8b5cf6'];
+            const colors = ['#10b981', '#3b82f6', '#ef4444', '#f59e0b', '#8b5cf6', '#ec4899'];
             for (let i = 0; i < 60; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
@@ -1298,6 +1487,9 @@
             
             document.getElementById('feedbackModal').classList.remove('active');
             document.getElementById('questionScreen').classList.remove('active');
+            
+            // Reset dart target for next animation
+            document.getElementById('dartTarget').classList.remove('active');
 
             if (gameState.questionNumber >= gameState.totalQuestions) {
                 showGameComplete();
