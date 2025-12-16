@@ -98,19 +98,22 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(239, 68, 68, 0.9);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(239, 68, 68, 0.95);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
             padding: 0.8rem 1.5rem;
             border-radius: 12px;
             font-size: 1rem;
-            font-weight: 700;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 1000;
             display: none;
             backdrop-filter: blur(10px);
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 
+                0 0 8px rgba(255, 255, 255, 0.4),
+                0 1px 6px rgba(0, 0, 0, 0.8),
+                1px 1px 3px rgba(0, 0, 0, 1);
         }
 
         .quit-btn.active {
@@ -164,24 +167,30 @@
             background-clip: text;
             letter-spacing: -1px;
             text-transform: uppercase;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) drop-shadow(0 3px 10px rgba(0, 0, 0, 0.9));
         }
 
         .subtitle {
             font-size: 1.1rem;
-            color: white;
-            font-weight: 600;
+            color: #ffffff;
+            font-weight: 700;
             text-align: center;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 2px 10px rgba(0, 0, 0, 0.9),
+                1px 1px 3px rgba(0, 0, 0, 1);
         }
 
         .gen-subtitle {
             font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
+            font-weight: 900;
+            color: #ffffff;
             margin-bottom: 0.3rem;
             letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.6),
+                0 2px 12px rgba(0, 0, 0, 1),
+                2px 2px 4px rgba(0, 0, 0, 1);
         }
 
         /* Game States */
@@ -249,16 +258,19 @@
             font-size: 2.5rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            color: white;
+            color: #ffffff;
             letter-spacing: -0.5px;
             position: relative;
             z-index: 1;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            text-shadow: 
+                0 0 15px rgba(255, 255, 255, 0.7),
+                0 4px 25px rgba(0, 0, 0, 1),
+                2px 2px 6px rgba(0, 0, 0, 1);
         }
 
         .welcome-subtitle {
             font-size: 1.25rem;
-            color: white;
+            color: #ffffff;
             margin-bottom: 3rem;
             line-height: 1.8;
             max-width: 520px;
@@ -266,8 +278,11 @@
             margin-right: auto;
             position: relative;
             z-index: 1;
-            font-weight: 600;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            font-weight: 700;
+            text-shadow: 
+                0 0 8px rgba(255, 255, 255, 0.4),
+                0 2px 12px rgba(0, 0, 0, 0.9),
+                1px 1px 4px rgba(0, 0, 0, 1);
         }
 
         .game-features {
@@ -303,10 +318,13 @@
 
         .feature-text {
             font-size: 0.95rem;
-            color: white;
-            font-weight: 700;
+            color: #ffffff;
+            font-weight: 800;
             line-height: 1.4;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 
+                0 0 6px rgba(255, 255, 255, 0.4),
+                0 1px 6px rgba(0, 0, 0, 0.8),
+                1px 1px 3px rgba(0, 0, 0, 1);
         }
 
         .input-group {
@@ -319,11 +337,14 @@
             display: block;
             margin-bottom: 1rem;
             font-size: 1rem;
-            font-weight: 800;
-            color: white;
+            font-weight: 900;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            text-shadow: 
+                0 0 8px rgba(255, 255, 255, 0.5),
+                0 2px 10px rgba(0, 0, 0, 1),
+                1px 1px 4px rgba(0, 0, 0, 1);
         }
 
         input {
@@ -403,10 +424,13 @@
 
         .roller-title {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 800;
+            font-weight: 900;
             margin-bottom: 2rem;
-            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.8);
-            color: white;
+            text-shadow: 
+                0 0 12px rgba(255, 255, 255, 0.6),
+                0 3px 18px rgba(0, 0, 0, 1),
+                2px 2px 6px rgba(0, 0, 0, 1);
+            color: #ffffff;
         }
 
         .number-display {
@@ -479,10 +503,10 @@
         /* Question Card */
         .question-card {
             background: rgba(33, 26, 54, 0.95);
-            border-radius: 32px;
-            padding: 3rem;
-            margin: 2rem auto;
-            max-width: 900px;
+            border-radius: 24px;
+            padding: 2rem 2.5rem;
+            margin: 1rem auto;
+            max-width: 800px;
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(20px);
@@ -492,7 +516,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .difficulty-section {
@@ -502,10 +526,13 @@
         }
 
         .difficulty-label {
-            color: rgba(255, 255, 255, 0.8);
+            color: #ffffff;
             font-size: 0.9rem;
-            font-weight: 600;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            text-shadow: 
+                0 0 6px rgba(255, 255, 255, 0.4),
+                0 1px 6px rgba(0, 0, 0, 0.8),
+                1px 1px 2px rgba(0, 0, 0, 1);
         }
 
         .difficulty-badge {
@@ -525,7 +552,7 @@
 
         .question-counter {
             text-align: right;
-            color: rgba(255, 255, 255, 0.8);
+            color: #ffffff;
         }
 
         .counter-value {
@@ -533,55 +560,72 @@
             font-weight: 700;
             color: #c4b5fd;
             line-height: 1;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+            text-shadow: 
+                0 0 15px rgba(196, 181, 253, 0.8),
+                0 2px 12px rgba(0, 0, 0, 0.8);
         }
 
         .counter-label {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: #ffffff;
             margin-top: 0.3rem;
-            font-weight: 600;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            text-shadow: 
+                0 0 6px rgba(255, 255, 255, 0.4),
+                0 1px 6px rgba(0, 0, 0, 0.8),
+                1px 1px 2px rgba(0, 0, 0, 1);
         }
 
         .slang-term {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 800;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 900;
             text-align: center;
-            margin: 2rem 0;
-            color: white;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(236, 72, 153, 0.6);
+            margin: 1rem 0;
+            color: #ffffff;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(236, 72, 153, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.9),
+                2px 2px 4px rgba(0, 0, 0, 1);
+            letter-spacing: 2px;
         }
 
         .question-text {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 800;
             text-align: center;
-            color: white;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 2px 15px rgba(0, 0, 0, 1),
+                2px 2px 4px rgba(0, 0, 0, 1);
+            line-height: 1.4;
         }
 
         .options-grid {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
         }
 
         .option-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px solid rgba(236, 72, 153, 0.5);
-            color: #ff69b4;
-            padding: 1.5rem 2rem;
-            border-radius: 20px;
-            font-size: 1.35rem;
-            font-weight: 700;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 105, 180, 0.6);
+            color: #ffffff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             font-family: 'Inter', sans-serif;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            text-shadow: 
+                0 0 8px rgba(255, 255, 255, 0.5),
+                0 2px 8px rgba(0, 0, 0, 0.8),
+                1px 1px 3px rgba(0, 0, 0, 1);
         }
 
         .option-btn:hover {
@@ -622,19 +666,20 @@
         }
 
         .submit-btn {
-            margin-top: 2rem;
-            padding: 1.5rem 3rem;
-            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
             background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
             color: white;
             border: none;
-            border-radius: 20px;
-            font-weight: 700;
+            border-radius: 16px;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .submit-btn:hover:not(:disabled) {
@@ -782,16 +827,22 @@
             font-size: 3rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.8);
-            color: white;
+            text-shadow: 
+                0 0 15px rgba(255, 255, 255, 0.7),
+                0 3px 20px rgba(0, 0, 0, 1),
+                2px 2px 6px rgba(0, 0, 0, 1);
+            color: #ffffff;
         }
 
         .complete-message {
             font-size: 1.4rem;
-            color: white;
+            color: #ffffff;
             margin-bottom: 3rem;
-            font-weight: 600;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            font-weight: 700;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 2px 12px rgba(0, 0, 0, 0.9),
+                1px 1px 4px rgba(0, 0, 0, 1);
         }
 
         .restart-btn {
@@ -863,15 +914,16 @@
             }
 
             .question-card {
-                padding: 2rem;
+                padding: 1.5rem;
             }
 
             .slang-term {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                margin: 0.8rem 0;
             }
 
             .question-text {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
 
             .number-display {
@@ -1056,18 +1108,16 @@
             audio.play().catch(e => console.log('Audio play failed:', e));
         }
 
-        // Quit Game - Go to Thank You Page
+        // Quit Game - Go directly to Thank You Page
         function quitGame() {
-            if (confirm('Are you sure you want to quit the game?')) {
-                // Hide all screens
-                document.getElementById('setupScreen').classList.remove('active');
-                document.getElementById('rollerScreen').classList.remove('active');
-                document.getElementById('questionScreen').classList.remove('active');
-                document.getElementById('feedbackModal').classList.remove('active');
-                
-                // Show game complete screen
-                showGameComplete();
-            }
+            // Hide all screens
+            document.getElementById('setupScreen').classList.remove('active');
+            document.getElementById('rollerScreen').classList.remove('active');
+            document.getElementById('questionScreen').classList.remove('active');
+            document.getElementById('feedbackModal').classList.remove('active');
+            
+            // Show game complete screen
+            showGameComplete();
         }
 
         // Start Game
