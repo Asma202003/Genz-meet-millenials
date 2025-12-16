@@ -1214,6 +1214,78 @@
             }
         }
 
+        // Play Tick Sound for Number Rolling - Premium Quality
+        function playTickSound() {
+            initAudio();
+            const now = audioContext.currentTime;
+            
+            // Create triple oscillator for ultra-rich sound
+            const osc1 = audioContext.createOscillator();
+            const osc2 = audioContext.createOscillator();
+            const osc3 = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+            
+            // Bright top layer with slight pitch rise for excitement
+            osc1.type = 'sine';
+            osc1.frequency.setValueAtTime(2200, now);
+            osc1.frequency.linearRampToValueAtTime(2400, now + 0.02);
+            
+            // Mid layer for body and warmth
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(1100, now);
+            
+            // Low layer for punch and presence
+            osc3.type = 'triangle';
+            osc3.frequency.setValueAtTime(550, now);
+            
+            // High-shelf filter for sparkle and polish
+            filter.type = 'highshelf';
+            filter.frequency.value = 2500;
+            filter.gain.value = 4;
+            
+            // Professional envelope - instant attack, smooth decay
+            gainNode.gain.setValueAtTime(0, now);
+            gainNode.gain.linearRampToValueAtTime(0.16, now + 0.002);
+            gainNode.gain.setValueAtTime(0.16, now + 0.008);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+            
+            osc1.connect(gainNode);
+            osc2.connect(gainNode);
+            osc3.connect(gainNode);
+            gainNode.connect(filter);
+            filter.connect(audioContext.destination);
+            
+            osc1.start(now);
+            osc2.start(now);
+            osc3.start(now);
+            osc1.stop(now + 0.05);
+            osc2.stop(now + 0.05);
+            osc3.stop(now + 0.05);
+        }
+
+        // Play Final Number Reveal Sound
+        function playRevealSound() {
+            initAudio();
+            const now = audioContext.currentTime;
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(400, now);
+            oscillator.frequency.linearRampToValueAtTime(800, now + 0.3);
+            
+            gainNode.gain.setValueAtTime(0.3, now);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.start(now);
+            oscillator.stop(now + 0.3);
+        }
+
         // Play Clap Sound
         function playClaps() {
             initAudio();
@@ -1325,7 +1397,8 @@
             selectedAnswer: null,
             questionNumber: 0,
             totalQuestions: 10,
-            rolledNumber: false
+            rolledNumber: false,
+            usedNumbers: [] // Track used numbers
         };
 
         // Quit Game - Go directly to Thank You Page
@@ -1352,17 +1425,24 @@
 
             gameState.totalParticipants = count;
             gameState.questionNumber = 0;
+            gameState.usedNumbers = []; // Reset used numbers
 
             document.getElementById('setupScreen').classList.remove('active');
             document.getElementById('rollerScreen').classList.add('active');
             document.getElementById('quitBtn').classList.add('active');
         }
 
-        // Roll Number
+        // Roll Number - Generate Unique Number
         function rollNumber() {
             const rollBtn = document.getElementById('rollBtn');
             const display = document.getElementById('numberDisplay');
             const showBtn = document.getElementById('showQuestionBtn');
+
+            // Check if all numbers have been used
+            if (gameState.usedNumbers.length >= gameState.totalParticipants) {
+                alert('All participants have been called! Resetting...');
+                gameState.usedNumbers = [];
+            }
 
             rollBtn.disabled = true;
             display.classList.add('rolling');
@@ -1372,15 +1452,33 @@
             const rollInterval = setInterval(() => {
                 const randomNum = Math.floor(Math.random() * gameState.totalParticipants) + 1;
                 display.textContent = randomNum;
+                
+                // Play tick sound on each number change
+                playTickSound();
+                
                 rollCount++;
 
                 if (rollCount >= maxRolls) {
                     clearInterval(rollInterval);
+                    
+                    // Generate a unique number that hasn't been used
+                    let uniqueNumber;
+                    do {
+                        uniqueNumber = Math.floor(Math.random() * gameState.totalParticipants) + 1;
+                    } while (gameState.usedNumbers.includes(uniqueNumber));
+                    
+                    // Display the unique number
+                    display.textContent = uniqueNumber;
                     display.classList.remove('rolling');
-                    gameState.currentNumber = randomNum;
+                    gameState.currentNumber = uniqueNumber;
+                    gameState.usedNumbers.push(uniqueNumber); // Mark as used
                     gameState.rolledNumber = true;
                     
+                    // Play reveal sound when final number appears
+                    playRevealSound();
+                    
                     showBtn.classList.add('active');
+                    rollBtn.disabled = false; // Keep button active for re-rolling
                 }
             }, 80);
         }
@@ -1540,7 +1638,7 @@
             } else {
                 gameState.rolledNumber = false;
                 document.getElementById('rollerScreen').classList.add('active');
-                document.getElementById('rollBtn').disabled = false;
+                // Don't disable the roll button - keep it active for host
                 document.getElementById('numberDisplay').textContent = '?';
                 document.getElementById('showQuestionBtn').classList.remove('active');
             }
